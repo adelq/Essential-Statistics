@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>Essential Statistics Web App</title>
+<script language='Javascript'>
+function multiply(form)
+{
+p = form.pbox.value
+u = p*5
+form.zbox.value = u
+}
+</script>
+</head>
+<body>
+<h1>Multiply by 5 </h1>
+
+<form NAME="form1">
+  <table>
+    <tr>
+      <th>Enter any value: </th>
+      <td><input TYPE="TEXT" NAME="pbox" SIZE="30"><br>
+      </td>
+    </tr>
+    <tr>
+      <th>Value x5 = </th>
+      <td><input TYPE="TEXT" NAME="zbox" SIZE="30"> </td>
+    </tr>
+  </table>
+  <p><br>
+  <br>
+  Push to <input TYPE="BUTTON" VALUE="Calculate" ONCLICK="multiply(this.form)"> </p>
+</form>
+</body>
+</html>
