@@ -2,7 +2,36 @@
 <head>
 <title>Z Distributions - Essential Statistics Web App</title>
 <script src="/js/jquery.js"></script>
+<script language='Javascript'>
+function oldcalc(form)
+{
+z = form.pbox2.value
+t = (z > 0) ? z : (- z)
+p = 1 - Math.pow((1 + (t * (0.0498673470 + t * (0.0211410061 + t *
+(0.0032776263 + t * (0.0000380036 + t * (0.0000488906 + t *
+0.0000053830))))))), -16) / 2
+form.zbox2.value = (z > 0) ? p : (1 - p)
+}
+</script>
 </head>
 <body>
+<h1>Old Method </h1>
+
+<form NAME="form2">
+  <table>
+    <tr>
+      <th>Enter any value: </th>
+      <td><input TYPE="TEXT" NAME="pbox2" SIZE="30"><br>
+      </td>
+    </tr>
+    <tr>
+      <th>Value = </th>
+      <td><input TYPE="TEXT" NAME="zbox2" SIZE="30"> </td>
+    </tr>
+  </table>
+  <p><br>
+  <br>
+  Push to <input TYPE="BUTTON" VALUE="Calculate" ONCLICK="oldcalc(this.form)"> </p>
+</form>
 </body>
 </html>
