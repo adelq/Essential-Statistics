@@ -4,12 +4,12 @@
   "description": "A webapp to evaluate Z, T, and Chi-square distributions.",
   "app": {
     "launch": {
-      "local_path": "templates/main.html"
+      "local_path": "html/main.html"
     }
   },
   "icons": {
 	"48":"icon.png"},
   "permissions": [
-    "http://api.flickr.com/"
+    "unlimitedStorage", "tabs", "notifications", "geolocation", "contextMenus"
   ]
 }
