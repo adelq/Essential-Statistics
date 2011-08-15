@@ -3,7 +3,7 @@
 <title>Z Distributions - Essential Statistics Web App</title>
 <script src="/js/jquery.js"></script>
 <script language='Javascript'>
-function oldcalc(form)
+function normalcdf(form)
 {
 z = form.pbox2.value
 t = (z > 0) ? z : (- z)
@@ -11,6 +11,17 @@ p = 1 - Math.pow((1 + (t * (0.0498673470 + t * (0.0211410061 + t *
 (0.0032776263 + t * (0.0000380036 + t * (0.0000488906 + t *
 0.0000053830))))))), -16) / 2
 form.zbox2.value = (z > 0) ? p : (1 - p)
+}
+
+function invnorm(form)
+{
+p = form.prob.value
+t = (p > .5) ? (1 - p) : p
+s = Math.sqrt(-2.0 * Math.log(t))
+a = 2.515517 + (0.802853 * s) + (0.010328 * s * s)
+b = 1 + (1.432788 * s) + (0.189269 * s * s) + (0.001308 * s * s * s)
+u = s - (a / b)
+form.zval.value = (p < .5) ? (- u) : u
 }
 </script>
 </head>
@@ -20,105 +31,35 @@ form.zbox2.value = (z > 0) ? p : (1 - p)
 <form NAME="form2">
   <table>
     <tr>
-      <th>Enter any value: </th>
+      <th>Enter Z value: </th>
       <td><input TYPE="TEXT" NAME="pbox2" SIZE="30"><br>
       </td>
     </tr>
     <tr>
-      <th>Value = </th>
+      <th>Probability = </th>
       <td><input TYPE="TEXT" NAME="zbox2" SIZE="30"> </td>
     </tr>
   </table>
   <p><br>
   <br>
-  Push to <input TYPE="BUTTON" VALUE="Calculate" ONCLICK="oldcalc(this.form)"> </p>
+  Push to <input TYPE="BUTTON" VALUE="Calculate" ONCLICK="normalcdf(this.form)"> </p>
 </form>
-<script language='Javascript'>
-function round(num, dec)
-{
-  var factor = Math.pow(10,dec);
-  return Math.round(num * factor) / factor;
-}
-
-function NORMSINV(p)
-{
-  //
-  // Lower tail quantile for standard normal distribution function.
-  //
-  // This function returns an approximation of the inverse cumulative
-  // standard normal distribution function.  I.e., given P, it returns
-  // an approximation to the X satisfying P = Pr{Z <= X} where Z is a
-  // random variable from the standard normal distribution.
-  //
-  // The algorithm uses a minimax approximation by rational functions
-  // and the result has a relative error whose absolute value is less
-  // than 1.15e-9.
-  //
-  // Author:      Peter John Acklam
-  // (Javascript version by Alankar Misra @ Digital Sutras (alankar@digitalsutras.com))
-  // Time-stamp:  2010-01-21 17:31:15 +01:00
-  // E-mail:      pjacklam@online.no
-  // WWW URL:     http://home.online.no/~pjacklam
-
-  // An algorithm with a relative error less than 1.15*10-9 in the entire region.
-
-  // Coefficients in rational approximations
-  var a = new Array(-3.969683028665376e+01,  2.209460984245205e+02,
-                    -2.759285104469687e+02,  1.383577518672690e+02,
-                    -3.066479806614716e+01,  2.506628277459239e+00);
-  var b = new Array(-5.447609879822406e+01,  1.615858368580409e+02,
-                    -1.556989798598866e+02,  6.680131188771972e+01,
-                    -1.328068155288572e+01 );
-  var c = new Array(-7.784894002430293e-03, -3.223964580411365e-01,
-                    -2.400758277161838e+00, -2.549732539343734e+00,
-                     4.374664141464968e+00,  2.938163982698783e+00);
-  var d = new Array (7.784695709041462e-03,  3.224671290700398e-01,
-                     2.445134137142996e+00,  3.754408661907416e+00);
-
-  // Define break-points.
-  var plow  = 0.02425;
-  var phigh = 1 - plow;
-
-  // Rational approximation for lower region:
-  if ( p < plow ) {
-           var q  = Math.sqrt(-2*Math.log(p));
-           return (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5]) /
-                                           ((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1);
-  }
-
-  // Rational approximation for upper region:
-  if ( phigh < p ) {
-           var q  = Math.sqrt(-2*Math.log(1-p));
-           return -(((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5]) /
-                                                  ((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1);
-  }
-
-  // Rational approximation for central region:
-  var q = p - 0.5;
-  var r = q*q;
-  return (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q /
-                           (((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1);
-}
-
-function compute()
-{
-  var frm = document.frm;
-  var result = NORMSINV(frm.p.value);
-  var precision = frm.precision.value;
-  if(precision >= 0) result = round(result, precision);
-  frm.result.value = result;
-  return false;
-}
-//]]>
-</script>
-<h2>Convert Probability to Z-Score</h2>
-
-    <form name="frm" method="post" action="" id="frm">
-      Enter P : <input type="text" name="p" /><br />
-      <br />
-      Result : <input type="text" name="result" /><br />
-      <br />
-      <input type="submit" onclick="return compute();" />
-    </form>
+<h2>Convert Probability to Z-Score </h2>
+<form NAME="form1">
+  <table>
+    <tr>
+      <th>Enter a p-value: </th>
+      <td><input TYPE="TEXT" NAME="prob" SIZE="30"><br>
+      </td>
+    </tr>
+    <tr>
+      <th>The z-value is: </th>
+      <td><input TYPE="TEXT" NAME="zval" SIZE="30"> </td>
+    </tr>
+  </table>
+  <p><br>
+  <br>
+  Push to <input TYPE="BUTTON" VALUE="Calculate" ONCLICK="invnorm(this.form)"> </p>
+</form>
 </body>
 </html>
