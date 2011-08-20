@@ -1,8 +1,26 @@
-<html>
-<head>
-<title>Chi Square Distributions - Essential Statistics Web App</title>
-<script src="/js/jquery.js"></script>
-</head>
-<body>
-</body>
-</html>
+<h2>Calculate probability from <em>X</em>&sup2; and <em>d</em></h2>
+
+<p class="j">
+One of the most common chi-square calculations is determining,
+given the measured <em>X</em>&sup2; value for a set of
+experiments with a degree of freedom <em>d</em>, the probability
+of the result being due to chance.  Enter the <em>X</em>&sup2;
+and <em>d</em> values in the boxes below, press the <b>Calculate</b>
+button, and the probability will appear in the Q box. 
+</p>
+
+<form name="calc1" action="return false;">
+<center>
+Given <em>X</em>&sup2;=<input type="text" name="x" value="" size="10" maxlength="12" /> and
+<em>d</em>=<input type="text" name="df" value="" size="10" maxlength="12" />
+<p />
+<input type="button" value="Calculate" onclick="calc_x_df();" />
+<p />
+The chance probability, <em>Q</em>, is:
+<input type="text" name="q" value="" size="16" maxlength="80" />
+</center>
+</form>
+
+<p />
+
+<hr />
