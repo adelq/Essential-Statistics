@@ -26,9 +26,9 @@ function StudT(t,n) {
     }
 
 //Calculation for T Score
-function AChiSq(p,n) { var v=0.5; var dv=0.5; var x=0
-    while(dv>1e-10) { x=1/v-1; dv=dv/2; if(ChiSq(x,n)>p) { v=v-dv } else { v=v+dv } }
-    return x
+function AStudT(p,n) { var v=0.5; var dv=0.5; var t=0
+    while(dv>1e-6) { t=1/v-1; dv=dv/2; if(StudT(t,n)>p) { v=v-dv } else { v=v+dv } }
+    return t
     }
 
 //Display evaluated results
