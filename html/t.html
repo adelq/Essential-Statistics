@@ -5,89 +5,82 @@
 <link type="text/css" href="../css/cupertino/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
 <script type="text/javascript" src="../js/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" src='../js/jquery-ui-1.8.16.custom.min.js'></script>
-<SCRIPT LANGUAGE="JavaScript">
-function LogGamma(Z) {
-	with (Math) {
-		var S=1+76.18009173/Z-86.50532033/(Z+1)+24.01409822/(Z+2)-1.231739516/(Z+3)+.00120858003/(Z+4)-.00000536382/(Z+5);
-		var LG= (Z-.5)*log(Z+4.5)-(Z+4.5)+log(S*2.50662827465);
-	}
-	return LG
-}
-
-function Betinc(X,A,B) {
-	var A0=0;
-	var B0=1;
-	var A1=1;
-	var B1=1;
-	var M9=0;
-	var A2=0;
-	var C9;
-	while (Math.abs((A1-A2)/A1)>.00001) {
-		A2=A1;
-		C9=-(A+M9)*(A+B+M9)*X/(A+2*M9)/(A+2*M9+1);
-		A0=A1+C9*A0;
-		B0=B1+C9*B0;
-		M9=M9+1;
-		C9=M9*(B-M9)*X/(A+2*M9-1)/(A+2*M9);
-		A1=A0+C9*A1;
-		B1=B0+C9*B1;
-		A0=A0/B1;
-		B0=B0/B1;
-		A1=A1/B1;
-		B1=1;
-	}
-	return A1/A
-}
-
-function compute(form) {
-    X=eval(form.argument.value)
-    df=eval(form.df.value)
-    with (Math) {
-		if (df<=0) {
-			alert("Degrees of freedom must be positive")
-		} else {
-			A=df/2;
-			S=A+.5;
-			Z=df/(df+X*X);
-			BT=exp(LogGamma(S)-LogGamma(.5)-LogGamma(A)+A*log(Z)+.5*log(1-Z));
-			if (Z<(A+1)/(S+2)) {
-				betacdf=BT*Betinc(Z,A,.5)
-			} else {
-				betacdf=1-BT*Betinc(1-Z,.5,A)
-			}
-			if (X<0) {
-				tcdf=betacdf/2
-			} else {
-				tcdf=1-betacdf/2
-			}
-		}
-		tcdf=round(tcdf*100000)/100000;
-	}
-    form.result.value = tcdf;
-}
-</SCRIPT>
+<script type="text/javascript" src='../js/t.js'></script>
 </head>
 <body>
-<h2>Convert T-Value to Probability</h2>
-<form>
+<h2>Convert T-Score to Probability</h2>
+<form NAME="form2">
   <table>
     <tr>
-      <th>Enter a T-value:</th>
-      <td><input TYPE="TEXT" NAME="argument" Value='1' SIZE="30"><br>
+      <th>Enter T value: </th>
+      <td><input TYPE="TEXT" NAME="tbox2" SIZE="30"><br>
       </td>
     </tr>
     <tr>
-      <th>Enter Degrees of freedom: </th>
-      <td><input TYPE="TEXT" NAME="df" Value='1' SIZE="30"> </td>
+      <th>Enter degrees of freedom: </th>
+      <td><input TYPE="TEXT" NAME="freebox2" SIZE="30"><br>
+      </td>
     </tr>
     <tr>
-      <td>Push to <input TYPE="BUTTON" VALUE="Calculate" ONCLICK="compute(this.form)"></td>
-    </tr>
-    <tr>
-      <th>The P-value is: </th>
-      <td><input TYPE="TEXT" NAME="result" SIZE="30"> </td>
+      <th>Probability = </th>
+      <td><input TYPE="TEXT" NAME="pbox2" SIZE="30"> </td>
     </tr>
   </table>
+  <br>
+  Push to <input TYPE="BUTTON" VALUE="Calculate" ONCLICK="CalcT(this.form)"> </p>
 </form>
+<h2>Convert Probability to T Value </h2>
+<form NAME="form1">
+  <table>
+    <tr>
+      <th>Enter a p-value: </th>
+      <td><input TYPE="TEXT" NAME="prob" SIZE="30"><br>
+      </td>
+    </tr>
+    <tr>
+      <th>Enter degrees of freedom: </th>
+      <td><input TYPE="TEXT" NAME="freebox2" SIZE="30"><br>
+      </td>
+    </tr>
+    <tr>
+      <th>The t-value is: </th>
+      <td><input TYPE="TEXT" NAME="tval" SIZE="30"> </td>
+    </tr>
+  </table>
+  <br>
+  Push to <input TYPE="BUTTON" VALUE="Calculate" ONCLICK="invnorm(this.form)"> </p>
+</form>
+</table>
+  <p> <font color="Blue"><b>Note</b>: p is the area in the <b>two
+tails</b> of the distribution</font> </p>
+  <p> </p>
+  <hr align="center" noshade="noshade" size="1" width="100%">
+  <h2> <font color="Blue">Student t</font> </h2>
+  <table border="4">
+    <tbody>
+      <tr>
+        <td>
+        <div align="center"> t </div>
+        </td>
+        <td>
+        <div align="center"> d.f. </div>
+        </td>
+        <td>
+        <div align="center"> p </div>
+        </td>
+      </tr>
+      <tr>
+        <td> <input name="t" size="8" value="0" onfocus="t.select()" type="text"></td>
+        <td> <input name="nt" size="8" value="0" onfocus="nt.select()" type="text"></td>
+        <td> <input name="pt" size="8" value="0" onfocus="pt.select()" onblur="t.focus()" type="text"></td>
+      </tr>
+      <tr>
+        <td> <input value="Calc t" onclick="CalcTr(this.form)" type="button"></td>
+        <td><br>
+        </td>
+        <td> <input value="Calc p" onclick="CalcT(this.form)" type="button"></td>
+      </tr>
+    </tbody>
+  </table>
 </body>
 </html>
