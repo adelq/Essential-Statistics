@@ -1,6 +1,6 @@
 {
   "name": "Essential Statistics",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "A webapp to evaluate Z, T, and Chi-square distributions.",
   "app": {
     "launch": {
