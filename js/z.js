@@ -1,3 +1,4 @@
+//Convert Z-Score to probability
 function normalcdf(form)
 {
 z = form.z.value
@@ -8,6 +9,7 @@ p = 1 - Math.pow((1 + (t * (0.0498673470 + t * (0.0211410061 + t *
 form.p.value = (z > 0) ? p : (1 - p)
 }
 
+//Convert probability to Z-Score
 function invnorm(form)
 {
 p = form.p.value
