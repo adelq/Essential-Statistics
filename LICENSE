@@ -672,3 +672,18 @@ may consider it more useful to permit linking proprietary applications with
 the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 <http://www.gnu.org/philosophy/why-not-lgpl.html>.
+
+PUBLIC DOMAIN
+The following JavaScript functions for calculating normal and chi-square probabilities and critical values were adapted by John Walker from C implementations written by Gary Perlman of Wang Institute, Tyngsboro, MA 01879.  Both the original C code and this JavaScript edition are in the public domain.
+
+POZ  --  probability of normal z value
+Adapted from a polynomial approximation in:
+Ibbetson D, Algorithm 209
+Collected Algorithms of the CACM 1963 p. 616
+
+POCHISQ  --  probability of chi-square value
+Adapted from:
+Hill, I. D. and Pike, M. C.  Algorithm 299
+Collected Algorithms for the CACM 1967 p. 243
+Updated for rounding errors based on remark in ACM TOMS June 1985, page 185
+
