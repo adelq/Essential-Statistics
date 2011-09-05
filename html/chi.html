@@ -6,24 +6,7 @@
 <script type="text/javascript" src="../js/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" src='../js/jquery-ui-1.8.16.custom.min.js'></script>
 <script language='Javascript'>
-
-    /*  The following JavaScript functions for calculating normal and
-        chi-square probabilities and critical values were adapted by
-        John Walker from C implementations
-        written by Gary Perlman of Wang Institute, Tyngsboro, MA
-        01879.  Both the original C code and this JavaScript edition
-        are in the public domain.  */
-
-    /*  POZ  --  probability of normal z value
-
-        Adapted from a polynomial approximation in:
-                Ibbetson D, Algorithm 209
-                Collected Algorithms of the CACM 1963 p. 616
-        Note:
-                This routine has six digit accuracy, so it is only useful for absolute
-                z values < 6.  For z values >= to 6.0, poz() returns 0.0.
-    */
-
+	//  POZ  --  probability of normal z value
     function poz(z) {
         var y, x, w;
         var Z_MAX = 6.0;              /* Maximum meaningful z value */
@@ -63,15 +46,7 @@
         return (x < -BIGX) ? 0.0 : Math.exp(x);
     }   
 
-    /*  POCHISQ  --  probability of chi-square value
-
-              Adapted from:
-                      Hill, I. D. and Pike, M. C.  Algorithm 299
-                      Collected Algorithms for the CACM 1967 p. 243
-              Updated for rounding errors based on remark in
-                      ACM TOMS June 1985, page 185
-    */
-
+    //  POCHISQ  --  probability of chi-square value
     function pochisq(x, df) {
         var a, y, s;
         var e, c, z;
