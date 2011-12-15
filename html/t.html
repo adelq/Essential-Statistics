@@ -6,6 +6,17 @@
 <script type="text/javascript" src="../js/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" src='../js/jquery-ui-1.8.16.custom.min.js'></script>
 <script type="text/javascript" src='../js/t.js'></script>
+<script>
+	//Initiate Tabs from jquery framework
+	$(function() {
+		$( "#tabs" ).tabs();
+	});
+	//Initiate Buttons from jquery framework
+	$(function() {
+		$( "input:submit, a, button", ".demo" ).button();
+		$( "a", ".demo" ).click(function() { return false; });
+	});
+</script>
 </head>
 <body>
 <h2>Convert T-Score to Probability</h2>

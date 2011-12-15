@@ -169,6 +169,17 @@
         document.calc2.x.value = trimfloat(critchi(document.calc2.q.value, document.calc2.df.value), 4);
     }
 </script>
+<script>
+	//Initiate Tabs from jquery framework
+	$(function() {
+		$( "#tabs" ).tabs();
+	});
+	//Initiate Buttons from jquery framework
+	$(function() {
+		$( "input:submit, a, button", ".demo" ).button();
+		$( "a", ".demo" ).click(function() { return false; });
+	});
+</script>
 </head>
 <body>
 <h2>Calculate probability from <em>X</em>&sup2; and <em>d</em></h2>
