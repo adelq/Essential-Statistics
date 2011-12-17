@@ -1,10 +1,9 @@
 What still needs to be done: 
-*jquery UI to make it user friendly 
 *Implementation of a 2-SampTTest (A Student T Test for 2 populations, if possible have it both pooled and not pooled)
 *Include both 1 tailed and 2 tailed stats for all distributions
 *Calculation of p value for a range of Z values for the Z distribution, for example from -1 to 1 = 0.68
 
-This is a Statistics Webapp designed for Google Chrome, written in Javascript, by Adel Qalieh and Moaz Sinan.
+This is a Statistics Webapp designed for Google Chrome, written in Javascript, by Adel Qalieh.
 
 Skills Used: HTML, Javascript, CSS, jquery, jquery UI
 
