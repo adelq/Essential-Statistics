@@ -39,7 +39,7 @@ button, and the probability will appear in the Q box.
 Given <em>X</em>&sup2;=<input type="text" name="x" value="" size="10" maxlength="12" /> and
 <em>d</em>=<input type="text" name="df" value="" size="10" maxlength="12" />
 <p />
-<input type="button" value="Calculate" onclick="calc_x_df();" />
+<input type="button" value="Calculate" onclick="calc_x_df(this.form);" />
 <p />
 The chance probability, <em>Q</em>, is:
 <input type="text" name="q" value="" size="16" maxlength="80" />
@@ -62,7 +62,7 @@ Given probability
 <em>Q</em>=<input type="text" name="q" value="" size="10" maxlength="12" /> and
 <em>d</em>=<input type="text" name="df" value="" size="10" maxlength="12" />
 <p />
-<input type="button" value="Calculate" onclick="calc_q_df();" />
+<input type="button" value="Calculate" onclick="calc_q_df(this.form);" />
 <p />
 The <em>X</em>&sup2; value is:
 <input type="text" name="x" value="" size="16" maxlength="80" />
